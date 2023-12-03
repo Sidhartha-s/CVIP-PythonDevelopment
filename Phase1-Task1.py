@@ -1,17 +1,17 @@
 import tkinter as tk
 
 def onclick(value):
-    value = disp.get()
+    current_value = disp.get()
     disp.delete(0, tk.END)
-    disp.insert(tk.END, value + value)
+    disp.insert(tk.END, current_value + value)
 
-def C():
+def clear_display():
     disp.delete(0, tk.END)
 
-def math():
+def calculate_result():
     try:
-        exp = disp.get()
-        result = eval(exp)
+        expression = disp.get()
+        result = eval(expression)
         disp.delete(0, tk.END)
         disp.insert(tk.END, str(result))
     except Exception as e:
@@ -45,10 +45,10 @@ for i in buttons:
                   command=lambda value=i: onclick(value)).grid(row=row, column=col, padx=2, pady=2)
     elif i == 'C':
         tk.Button(window, text=i, width=4, height=2, bg="#ff6666", fg="#FFFFFF", bd=0,
-                  command=C).grid(row=row, column=col, padx=2, pady=2)
+                  command=clear_display).grid(row=row, column=col, padx=2, pady=2)
     else:
         tk.Button(window, text=i, width=4, height=2, bg="#666666", fg="#FFFFFF", bd=0,
-                  command=math).grid(row=row, column=col, padx=2, pady=2)
+                  command=calculate_result).grid(row=row, column=col, padx=2, pady=2)
     col += 1
     if col > 3:
         col = 0
